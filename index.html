@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Chat Tim</title>
-<link rel="icon" href="data:,">
+<link rel="icon" type="image/png" href="pvc-team-logo.png">
 <style>
   :root{
     --bg:#EDEAE3; --panel:#FFFFFF; --text:#20302B; --muted:#6B7A74;
@@ -41,6 +41,7 @@
     padding-top:calc(14px + env(safe-area-inset-top,0px));background:var(--accent);color:#fff;flex-shrink:0;}
   header .dot{width:9px;height:9px;border-radius:50%;background:#7CF2C0;flex-shrink:0}
   header .who{font-weight:600;font-size:16px}
+  header .logo-small{height:26px;width:auto;flex-shrink:0;background:#fff;border-radius:6px;padding:2px}
   header .status{font-size:12px;opacity:.85}
   header .meta{display:flex;flex-direction:column;gap:2px;flex:1}
   header .leave{background:none;border:none;color:#fff;opacity:.85;font-size:13px;cursor:pointer}
@@ -80,6 +81,7 @@
 
   <div id="chat" style="display:none;flex:1;flex-direction:column;min-height:0">
     <header>
+      <img class="logo-small" src="pvc-team-logo.png" alt="PVC Team logo">
       <div class="dot"></div>
       <div class="meta">
         <span class="who">Ruang Tim</span>

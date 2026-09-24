@@ -4,10 +4,10 @@
 // yang melindungi datamu adalah Firestore Security Rules, bukan menyembunyikan config ini.
 
 const firebaseConfig = {
-  apiKey: "GANTI_DENGAN_API_KEY",
-  authDomain: "GANTI.firebaseapp.com",
-  projectId: "GANTI_PROJECT_ID",
-  storageBucket: "GANTI.appspot.com",
-  messagingSenderId: "GANTI_SENDER_ID",
-  appId: "GANTI_APP_ID"
+  apiKey: "AIzaSyAwTqUjuAUm4r36Opr3OLqauhmx6_FYazU",
+  authDomain: "chat-tim-ce945.firebaseapp.com",
+  projectId: "chat-tim-ce945",
+  storageBucket: "chat-tim-ce945.firebasestorage.app",
+  messagingSenderId: "931562248390",
+  appId: "1:931562248390:web:284689b5e28d8ca1005fc7"
 };
