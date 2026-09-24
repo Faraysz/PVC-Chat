@@ -48,15 +48,6 @@ Karena GitHub Pages hanya bisa meng-*hosting* file statis, bagian "server" dipeg
 >
 > 💡 **Butuh file besar?** Upgrade project ke paket **Blaze**, aktifkan **Firebase Storage**, lalu ubah `uploadFile()` di `app.js` untuk mengunggah ke Storage dan simpan `downloadURL`-nya alih-alih base64.
 
-## 📂 Struktur Proyek
-
-PVC-Chat/
-├── index.html          # Antarmuka (UI) utama aplikasi
-├── style.css           # Styling tampilan (responsif & modern)
-├── app.js              # Logika frontend & koneksi Firestore real-time
-├── firebase-config.js  # Konfigurasi kredensial Firebase (JANGAN di-commit jika repo publik!)
-└── README.md           # Dokumentasi ini
-
 ## 🤝 Kontribusi 
 Kontribusi sangat terbuka! Jika Anda ingin menambahkan fitur seperti typing indicator, 
 dark mode, atau room chat yang terpisah, silakan buka issue atau kirimkan pull request.
