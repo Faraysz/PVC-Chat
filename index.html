@@ -3,8 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>PVC Team Chat</title>
+<title>Chat Tim</title>
 <link rel="icon" type="image/png" href="pvc-team-logo.png">
+<link rel="apple-touch-icon" href="pvc-team-logo.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2F6F5E">
 <style>
   :root{
     --bg:#EDEAE3; --panel:#FFFFFF; --text:#20302B; --muted:#6B7A74;
@@ -50,8 +53,9 @@
   .row{display:flex}
   .row.me{justify-content:flex-end}
   .row.other{justify-content:flex-start}
-  .bubble{max-width:75%;padding:8px 12px;border-radius:14px;font-size:14.5px;line-height:1.35;
-    box-shadow:0 1px 1px rgba(0,0,0,.05);word-wrap:break-word;}
+  .msg-col{display:flex;flex-direction:column;max-width:78%;min-width:0;}
+  .bubble{padding:8px 12px;border-radius:14px;font-size:14.5px;line-height:1.35;
+    box-shadow:0 1px 1px rgba(0,0,0,.05);word-wrap:break-word;min-width:0;}
   .row.me .bubble{background:var(--bubble-me);color:var(--bubble-me-text);border-bottom-right-radius:4px}
   .row.other .bubble{background:var(--bubble-other);color:var(--bubble-other-text);border-bottom-left-radius:4px;border:1px solid var(--border)}
   .bubble .sender{display:block;font-size:11.5px;font-weight:600;opacity:.7;margin-bottom:2px}
@@ -68,6 +72,16 @@
     color:var(--accent);background:rgba(0,0,0,.05);padding:6px 10px;border-radius:8px;max-width:100%;word-break:break-all}
   .row.me .file-link{color:#fff;background:rgba(255,255,255,.16)}
   .file-link em{opacity:.65;font-style:normal;font-size:11px;flex-shrink:0}
+
+  .file-doc{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;
+    background:rgba(0,0,0,.05);border-radius:10px;padding:8px;min-width:200px;max-width:260px}
+  .row.me .file-doc{background:rgba(255,255,255,.16)}
+  .file-doc-icon{width:38px;height:38px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;
+    justify-content:center;color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.3px}
+  .file-doc-info{min-width:0;flex:1}
+  .file-doc-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .file-doc-size{font-size:11px;opacity:.65;margin-top:1px}
+  .file-doc-dl{font-size:15px;opacity:.7;flex-shrink:0}
   .edit-input{width:100%;padding:8px 10px;border-radius:8px;border:1px solid var(--border);
     font-size:14px;background:var(--input-bg);color:var(--text);outline:none}
   .edit-input:focus{border-color:var(--accent)}
@@ -81,6 +95,18 @@
   .img-viewer img{max-width:100%;max-height:100%;border-radius:8px;object-fit:contain}
   .img-viewer-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.16);color:#fff;border:none;
     border-radius:50%;width:40px;height:40px;font-size:18px;cursor:pointer}
+
+  #previewBar{display:none;align-items:center;gap:10px;padding:10px 12px;
+    border-top:1px solid var(--border);background:var(--bg);}
+  #previewBar .preview-img{max-height:64px;max-width:64px;border-radius:8px;object-fit:cover;flex-shrink:0;
+    border:1px solid var(--border)}
+  #previewBar .preview-doc-icon{width:44px;height:44px;border-radius:8px;flex-shrink:0;display:flex;
+    align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+  #previewBar .preview-info{flex:1;min-width:0}
+  #previewBar .preview-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  #previewBar .preview-size{font-size:11px;color:var(--muted);margin-top:1px}
+  #removePreviewBtn{border:none;background:none;color:#C0392B;font-size:20px;cursor:pointer;flex-shrink:0;
+    line-height:1;padding:4px}
 
   #composer{display:flex;gap:8px;padding:10px 12px;padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
     border-top:1px solid var(--border);background:var(--panel);flex-shrink:0;}
@@ -115,6 +141,10 @@
       <button class="leave" id="leaveBtn">Keluar</button>
     </header>
     <div id="messages"></div>
+    <div id="previewBar">
+      <div id="previewContent"></div>
+      <button id="removePreviewBtn" title="Batalkan">✕</button>
+    </div>
     <div id="composer">
       <input id="msgInput" placeholder="Ketik pesan…" autocomplete="off">
       <button id="attachBtn" class="ghost" title="Lampirkan file">📎</button>
@@ -129,5 +159,14 @@
 <script src="https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore-compat.js"></script>
 <script src="firebase-config.js"></script>
 <script src="app.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function (e) {
+        console.warn("Service worker gagal didaftarkan:", e);
+      });
+    });
+  }
+</script>
 </body>
 </html>

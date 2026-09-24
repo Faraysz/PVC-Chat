@@ -1,0 +1,14 @@
+{
+  "name": "Chat Tim",
+  "short_name": "Chat Tim",
+  "description": "Chat tim real-time yang ringan",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EDEAE3",
+  "theme_color": "#2F6F5E",
+  "icons": [
+    { "src": "pvc-team-logo.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "pvc-team-logo.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
