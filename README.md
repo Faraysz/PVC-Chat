@@ -27,6 +27,8 @@ Karena GitHub Pages hanya bisa meng-*hosting* file statis, bagian "server" dipeg
 | Fitur | Deskripsi |
 |---------|-------------|
 | ⚡ **Real-time Messaging** | Pesan muncul secara instan di semua perangkat yang terhubung tanpa perlu *refresh* |
+| 📎 **Upload File Universal** | Kirim gambar, dokumen, audio, video, atau file apa pun (hingga ~600KB) — disimpan inline (base64) di Firestore, tanpa Firebase Storage |
+| ✏️ **Edit & Hapus Pesan** | Pengirim bisa mengubah atau menghapus pesannya sendiri; pesan hasil edit ditandai otomatis |
 | 📜 **Riwayat Persisten** | Pesan tersimpan permanen di Firestore. Member baru bisa melihat hingga 200 pesan terakhir |
 | 🔑 **Tanpa Login Ribet** | Cukup masukkan nama panggilan untuk langsung bergabung ke ruang obrolan |
 | 🚀 **Zero Backend Maintenance** | Tidak perlu menyewa VPS atau mengatur server Node.js/PHP |
@@ -41,6 +43,10 @@ Karena GitHub Pages hanya bisa meng-*hosting* file statis, bagian "server" dipeg
 3. Koneksi Firestore: app.js menginisialisasi Firebase menggunakan konfigurasi di firebase-config.js dan membuka listener real-time ke koleksi messages.
 4. Pengiriman Pesan: Saat pengguna mengirim pesan, data { user, text, timestamp } di-push ke Firestore.
 5. Sinkronisasi: Firestore memicu update ke semua klien yang terhubung, dan pesan baru langsung muncul di layar tanpa reload halaman.
+
+> ⚠️ **Catatan keamanan:** PVC-Chat tidak memakai sistem login, jadi aturan "hanya pengirim yang bisa edit/hapus" hanya ditegakkan di sisi klien (tombol hanya muncul pada pesan sendiri). Untuk proteksi lebih ketat, tambahkan Firebase Auth.
+>
+> 💡 **Butuh file besar?** Upgrade project ke paket **Blaze**, aktifkan **Firebase Storage**, lalu ubah `uploadFile()` di `app.js` untuk mengunggah ke Storage dan simpan `downloadURL`-nya alih-alih base64.
 
 ## 📂 Struktur Proyek
 
